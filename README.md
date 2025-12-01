@@ -8,6 +8,7 @@
 7)Jenkins Maven-Java
 8)Jenkins maven-web
 9)jenkins Email
+10)webhooks
 
 
 
@@ -596,4 +597,144 @@ If you want, I can also send:
 Just tell me!
 
 ---
+
+
+
+# 🚀 *EXERCISE-1: JENKINS CI/CD USING GITHUB WEBHOOK (FINAL SHORT VERSION + YOUR REQUEST ADDED)*
+
+---
+
+## *STEP 1 — Ngrok Setup*
+
+### ✔ How to know if ngrok already exists
+
+* Search *ngrok.exe* using Windows Search
+* If you find → open it
+* If ngrok window opens → ngrok already exists
+
+### ✔ Check Jenkins port
+
+* Open browser → type *localhost:8081*
+* If Jenkins opens → port = 8081
+* If not → try *localhost:8080*
+
+---
+
+## *STEP 2 — Create Ngrok Account*
+
+1. Go to *ngrok.com*
+2. Click *Sign Up*
+3. Enter:
+
+   * Name: Pranavi
+   * Email: [sonthepranavi9@gmail.com](mailto:sonthepranavi9@gmail.com)
+   * Password: pranavi944.
+4. Dashboard will open
+
+---
+
+## *STEP 3 — Download Ngrok*
+
+1. Click *Download for Windows 64-bit*
+2. Extract ZIP
+3. Open *ngrok.exe*
+
+---
+go to ngrok.com
+
+Login to your account
+
+On left side menu → click Your Authtoken
+## *STEP 4 — Add Authtoken*
+
+Dashboard → *Your Authtoken → Copy*
+Open ngrok terminal → run:
+
+
+ngrok config add-authtoken <your_token>
+
+
+---
+
+## *STEP 5 — Start tunnel*
+
+Run:
+
+
+ngrok http 8081
+
+
+Copy the generated *https URL* (example: https://abc123.ngrok-free.dev)
+
+---
+
+## ✅ *STEP 6 — Add Webhook in GitHub (WITH MENU CLICKS + PAYLOAD URL CREATION)*
+
+### *A) Create the Payload URL*
+
+1. Take the ngrok HTTPS URL (example):
+   https://abc123.ngrok-free.dev
+2. Add this at the end:
+   /github-webhook/
+
+📌 *Final Payload URL becomes:*
+
+
+https://abc123.ngrok-free.dev/github-webhook/
+
+
+---
+-------------------------------------------------------
+### *B) Add the Webhook in GitHub (Menu Clicks)*
+
+Follow these clicks:
+
+1. *Open GitHub*
+2. Open *your repository*
+3. Click *Settings* (left side menu)
+4. Click *Webhooks*
+5. Click *Add Webhook*
+
+Now fill these:
+
+* *Payload URL:*
+  Paste
+
+  
+  https://abc123.ngrok-free.dev/github-webhook/
+  
+
+* *Content type:*
+  Choose
+
+  
+  application/json
+  
+
+* *Select event:*
+  Click
+
+  
+  Just the push event
+  
+
+* Click *Add Webhook* (green button)
+
+---
+
+## *STEP 7 — Jenkins Trigger*
+
+Jenkins → Job → *Configure → Build Triggers*
+✔ Check *GitHub hook trigger for GITScm polling*
+→ Save
+
+---
+
+## *STEP 8 — Test*
+
+* Push code to GitHub
+* GitHub sends webhook
+* Jenkins job runs automatically 🎉
+
+-------------------------------------------------------------------
      
